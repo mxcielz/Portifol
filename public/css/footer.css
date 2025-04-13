@@ -1,0 +1,219 @@
+/* CSS para Footer com sistema de dark mode isolado - CORRIGIDO */
+
+/* Definindo variáveis globais para elementos fora do footer */
+:root {
+    --footer-accent-global: #0d6efd;
+    --footer-text-global: #212529;
+  }
+  
+  /* Sistema de tema para o footer */
+  footer.site-footer {
+    /* Variáveis do footer - sempre presentes independente do tema */
+    --footer-bg: #f8f9fa00;
+    --footer-text: #212529;
+    --footer-accent: #0d6efd;
+    --footer-border: #dee2e6;
+    --footer-hover: #e9ecef;
+    --footer-shadow: 0 -5px 15px rgba(0, 0, 0, 0.05);
+    
+    /* Estilos base do footer */
+    width: 100%;
+    position: relative;
+    background-color: var(--footer-bg);
+    color: var(--footer-text);
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    transition: background-color 0.3s ease, color 0.3s ease;
+  }
+  
+  /* Aplicar estilo dark mode apenas ao footer quando necessário */
+  footer.site-footer.footer-dark-mode {
+    --footer-bg: #212529;
+    --footer-text: #f8f9fa;
+    --footer-accent: #6ea8fe;
+    --footer-border: #495057;
+    --footer-hover: #343a40;
+    --footer-shadow: 0 -5px 15px rgba(0, 0, 0, 0.2);
+  }
+  
+  /* Quando o footer está em dark mode, atualizar também as variáveis globais */
+  footer.site-footer.footer-dark-mode ~ * {
+    --footer-accent-global: #6ea8fe;
+    --footer-text-global: #f8f9fa;
+  }
+  
+  /* Detectar preferência do sistema */
+  @media (prefers-color-scheme: dark) {
+    footer.site-footer.footer-auto-theme {
+      --footer-bg: #212529;
+      --footer-text: #f8f9fa;
+      --footer-accent: #6ea8fe; 
+      --footer-border: #495057;
+      --footer-hover: #343a40;
+      --footer-shadow: 0 -5px 15px rgba(0, 0, 0, 0.2);
+    }
+    
+    /* Atualizar variáveis globais em modo automático se preferência for dark */
+    footer.site-footer.footer-auto-theme ~ * {
+      --footer-accent-global: #6ea8fe;
+      --footer-text-global: #f8f9fa;
+    }
+  }
+  
+  /* Container do footer */
+  footer.site-footer .footer-container {
+    padding: 3rem 1.5rem 2rem;
+    box-shadow: var(--footer-shadow);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 2rem;
+    background-color: var(--footer-bg);
+  }
+  
+  /* Logo do Footer */
+  footer.site-footer .footer-logo {
+    display: flex;
+    align-items: center;
+    gap: 0.75rem;
+    margin-bottom: 1rem;
+  }
+  
+  footer.site-footer .footer-logo img {
+    height: 40px;
+    width: auto;
+  }
+  
+  footer.site-footer .footer-logo h3 {
+    font-size: 1.5rem;
+    font-weight: 600;
+    margin: 0;
+    color: var(--footer-accent);
+  }
+  
+  /* Navegação do Footer */
+  footer.site-footer .footer-nav {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 1.5rem;
+    margin-bottom: 1.5rem;
+    width: 100%;
+  }
+  
+  footer.site-footer .footer-nav a {
+    color: var(--footer-text);
+    text-decoration: none;
+    font-weight: 500;
+    padding: 0.5rem 0.75rem;
+    border-radius: 4px;
+    transition: all 0.2s ease;
+  }
+  
+  footer.site-footer .footer-nav a:hover, 
+  footer.site-footer .footer-nav a:focus {
+    color: var(--footer-accent);
+    background-color: var(--footer-hover);
+  }
+  
+  /* Ícones de Social Media */
+  footer.site-footer .footer-social {
+    display: flex;
+    justify-content: center;
+    gap: 1.25rem;
+    margin-bottom: 1.5rem;
+  }
+  
+  footer.site-footer .footer-social a {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    background-color: var(--footer-hover);
+    color: var(--footer-text);
+    transition: all 0.2s ease;
+  }
+  
+  footer.site-footer .footer-social a:hover,
+  footer.site-footer .footer-social a:focus {
+    background-color: var(--footer-accent);
+    color: var(--footer-bg);
+    transform: translateY(-3px);
+  }
+  
+  footer.site-footer .footer-social i {
+    font-size: 1.2rem;
+  }
+  
+  /* Copyright */
+  footer.site-footer .footer-copyright {
+    text-align: center;
+    width: 100%;
+    padding-top: 1.5rem;
+    border-top: 1px solid var(--footer-border);
+    font-size: 0.875rem;
+  }
+  
+  /* Botão Back to Top - usando variáveis globais, não do footer */
+  .footer-back-to-top {
+    position: fixed;
+    right: 2rem;
+    bottom: 2rem;
+    width: 45px;
+    height: 45px;
+    background-color: var(--footer-accent-global, #0d6efd);
+    color: #fff;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.15);
+    transition: all 0.3s ease;
+    opacity: 0;
+    transform: translateY(20px);
+    z-index: 99;
+  }
+  
+  .footer-back-to-top.visible {
+    opacity: 1;
+    transform: translateY(0);
+  }
+  
+  .footer-back-to-top:hover {
+    background-color: var(--footer-text-global, #212529);
+    transform: translateY(-5px);
+  }
+  
+  /* Toggle para Dark Mode (isolado, com cores explícitas) */
+
+  
+  /* Media Queries */
+  @media (min-width: 768px) {
+    footer.site-footer .footer-container {
+      flex-direction: row;
+      flex-wrap: wrap;
+      justify-content: space-between;
+      gap: 1rem;
+      padding: 4rem 3rem 2rem;
+    }
+    
+    footer.site-footer .footer-logo {
+      margin-bottom: 0;
+    }
+    
+    footer.site-footer .footer-nav {
+      justify-content: flex-end;
+      width: auto;
+      margin-bottom: 0;
+    }
+    
+    footer.site-footer .footer-social {
+      margin-bottom: 0;
+    }
+    
+    footer.site-footer .footer-copyright {
+      margin-top: 2rem;
+    }
+  }

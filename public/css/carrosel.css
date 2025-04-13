@@ -1,0 +1,544 @@
+/* Aprimoramentos para o Swiper */
+.swiper {
+  width: 100%;
+  max-width: 800px;
+  height: 450px;
+  margin: 2rem auto;
+  border-radius: 20px;
+  overflow: hidden;
+  box-shadow: 
+    0 15px 35px rgba(0, 0, 0, 0.3),
+    0 0 0 1px rgba(255, 255, 255, 0.05);
+  position: relative;
+  transition: transform 0.4s ease, box-shadow 0.4s ease;
+}
+
+.swiper:hover {
+  transform: translateY(-5px);
+  box-shadow: 
+    0 20px 40px rgba(0, 0, 0, 0.4),
+    0 0 0 1px rgba(255, 255, 255, 0.07);
+}
+
+.swiper-slide {
+  position: relative;
+  overflow: hidden;
+  border-radius: 20px;
+  transform-origin: center;
+  transition: transform 0.5s cubic-bezier(0.215, 0.61, 0.355, 1);
+}
+
+.swiper-slide img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  transition: transform 0.7s cubic-bezier(0.33, 1, 0.68, 1), filter 0.5s ease;
+  border-radius: 20px;
+  will-change: transform;
+}
+
+.swiper-slide:hover img {
+  transform: scale(1.07);
+  filter: brightness(1.1) contrast(1.05);
+}
+
+.swiper-slide-content {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  width: 100%;
+  padding: 2rem;
+  z-index: 2;
+  opacity: 0;
+  transform: translateY(20px);
+  transition: opacity 0.5s ease, transform 0.5s ease;
+}
+
+.swiper-slide:hover .swiper-slide-content {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+.swiper-slide::before {
+  content: "";
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  height: 60%;
+  width: 100%;
+  background: linear-gradient(
+    to top, 
+    rgba(0, 0, 0, 0.8) 10%, 
+    rgba(0, 0, 0, 0.6) 30%, 
+    rgba(0, 0, 0, 0.4) 50%,
+    rgba(0, 0, 0, 0) 100%
+  );
+  z-index: 1;
+  border-radius: 0 0 20px 20px;
+  opacity: 0.8;
+  transition: opacity 0.5s ease;
+}
+
+.swiper-slide:hover::before {
+  opacity: 1;
+  height: 70%;
+}
+
+.swiper-button-next,
+.swiper-button-prev {
+  color: rgba(255, 255, 255, 0.9);
+  background-color: rgba(0, 0, 0, 0.3);
+  width: 50px !important;
+  height: 50px !important;
+  border-radius: 50%;
+  transition: all 0.3s cubic-bezier(0.25, 1, 0.5, 1);
+  transform: scale(0.8);
+  opacity: 0.6;
+}
+
+.swiper-button-next:after,
+.swiper-button-prev:after {
+  font-size: 22px !important;
+  font-weight: bold;
+}
+
+.swiper-button-next:hover,
+.swiper-button-prev:hover {
+  color: var(--accent-color);
+  background-color: rgba(0, 0, 0, 0.6);
+  transform: scale(1);
+  opacity: 1;
+}
+
+.swiper-pagination {
+  bottom: 15px !important;
+}
+
+.swiper-pagination-bullet {
+  width: 10px;
+  height: 10px;
+  background: var(--accent-color);
+  opacity: 0.5;
+  transition: all 0.3s ease;
+  margin: 0 6px !important;
+}
+
+.swiper-pagination-bullet-active {
+  opacity: 1;
+  background: var(--primary-color);
+  width: 30px;
+  border-radius: 5px;
+  transform: scaleY(1.2);
+}
+
+/* Estilo base */
+.projects-section {
+  padding: 4rem 2rem;
+  color: var(--text-light);
+  position: relative;
+  background-repeat: no-repeat;
+  background-size: cover;
+  transition: var(--transition);
+}
+
+/* Tema escuro */
+body.dark-theme .projects-section {
+  background-color: var(--bg-dark);
+  background-image: 
+    radial-gradient(circle at 30% 40%, rgba(0, 123, 255, 0.03) 0%, transparent 70%),
+    radial-gradient(circle at 70% 60%, rgba(0, 217, 255, 0.03) 0%, transparent 70%);
+  color: var(--text-light);
+}
+
+/* Tema claro */
+body.light-theme .projects-section {
+  background-color: var(--bg-light);
+  background-image: 
+    radial-gradient(circle at 30% 40%, rgba(0, 123, 255, 0.02) 0%, transparent 70%),
+    radial-gradient(circle at 70% 60%, rgba(0, 217, 255, 0.02) 0%, transparent 70%);
+  color: var(--text-dark);
+}
+
+.project-container {
+  display: flex;
+  flex-wrap: wrap;
+  border-radius: var(--border-radius);
+  box-shadow: 
+    0 20px 40px rgba(0, 0, 0, 0.3),
+    0 0 0 1px rgba(255, 255, 255, 0.05);
+  overflow: hidden;
+  margin-bottom: 3rem;
+  transition: transform 0.4s ease, box-shadow 0.4s ease;
+  position: relative;
+}
+
+.project-container:hover {
+  transform: translateY(-7px);
+  box-shadow: 
+    0 25px 50px rgba(0, 0, 0, 0.4),
+    0 0 0 1px rgba(255, 255, 255, 0.07);
+}
+
+.project-container::after {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 2px;
+  background: var(--primary-color); /* Simplificando para uma cor sólida */
+  opacity: 0;
+  transition: opacity 0.5s ease;
+}
+
+.project-container:hover::after {
+  opacity: 1;
+}
+
+.project-image {
+  flex: 1.2;
+  min-width: 300px;
+  position: relative;
+  overflow: hidden;
+}
+
+.project-image img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  transition: transform 0.7s cubic-bezier(0.33, 1, 0.68, 1), filter 0.5s ease;
+}
+
+.project-container:hover .project-image img {
+  transform: scale(1.05);
+  filter: brightness(1.1);
+}
+
+.project-overlay {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(
+    135deg,
+    rgba(0, 0, 0, 0.7) 0%,
+    rgba(0, 0, 0, 0) 50%
+  );
+  opacity: 0;
+  transition: opacity 0.5s ease;
+}
+
+.project-container:hover .project-overlay {
+  opacity: 1;
+}
+
+.project-chat {
+  flex: 1;
+  padding: 2rem;
+  background-color: var(--card-element-bg-dark); /* Cor neutra para o fundo do chat */
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  position: relative;
+  z-index: 1;
+}
+
+.project-title {
+  font-size: 1.8rem;
+  margin-bottom: 1rem;
+  color: var(--text-light);
+  position: relative;
+  display: inline-block;
+}
+
+.project-title::after {
+  content: '';
+  position: absolute;
+  bottom: -8px;
+  left: 0;
+  width: 40px;
+  height: 3px;
+  background: var(--primary-color); /* Simplificando para uma cor sólida */
+  transition: width 0.3s ease;
+}
+
+.project-container:hover .project-title::after {
+  width: 100%;
+}
+
+.chat-box {
+  font-family: 'National Park', monospace;
+  background-color: rgba(15, 15, 20, 0); /* Fundo mais escuro para maior contraste */
+  border: 1px solid var(--accent-color);
+  padding: 1.5rem;
+  border-radius: 12px;
+  color: var(--accent-color);
+  font-size: 1rem;
+  min-height: 150px;
+  width: 100%;
+  white-space: pre-wrap;
+  position: relative;
+  overflow: hidden;
+  box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3);
+  transition: all 0.4s ease;
+}
+
+.project-container:hover .chat-box {
+  border-color: var(--accent-color);
+  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.4);
+}
+
+.chat-box::before {
+  content: '>';
+  position: absolute;
+  top: 15px;
+  left: 15px;
+  color: var(--primary-color);
+  font-weight: bold;
+}
+
+.chat-text {
+  margin-left: 15px;
+  position: relative;
+  display: inline-block;
+}
+
+.blinking-cursor {
+  display: inline-block;
+  width: 10px;
+  height: 20px;
+  background-color: var(--accent-color);
+  margin-left: 5px;
+  animation: blink 1s infinite;
+}
+
+@keyframes blink {
+  0%, 49% { opacity: 1; }
+  50%, 100% { opacity: 0; }
+}
+
+.project-actions {
+  display: flex;
+  justify-content: flex-end;
+  margin-top: 1.5rem;
+  width: 100%;
+  gap: 1rem;
+}
+
+.project-btn {
+  padding: 10px 20px;
+  border-radius: 30px;
+  font-size: 0.9rem;
+  font-weight: 600;
+  text-decoration: none;
+  transition: all 0.3s ease;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.project-view-btn {
+  background: var(--primary-color); /* Simplificando para uma cor sólida */
+  color: white;
+  border: none;
+}
+
+.project-view-btn:hover {
+  background: var(--primary-light);
+  transform: translateY(-3px);
+  box-shadow: 0 8px 15px rgba(0, 123, 255, 0.4);
+}
+
+.project-code-btn {
+  background-color: transparent;
+  color: var(--text-light);
+  border: 1px solid var(--primary-color);
+}
+
+.project-code-btn:hover {
+  background-color: rgba(0, 123, 255, 0.1);
+  transform: translateY(-3px);
+  box-shadow: 0 8px 15px rgba(0, 0, 0, 0.2);
+}
+
+/* Responsividade aprimorada */
+@media (max-width: 768px) {
+  .project-container {
+    flex-direction: column;
+  }
+
+  .project-image,
+  .project-chat {
+    width: 100%;
+  }
+  
+  .project-image {
+    height: 250px;
+  }
+
+  .swiper {
+    height: 350px;
+  }
+
+  .chat-box {
+    font-size: 0.95rem;
+    min-height: 120px;
+  }
+  
+  .project-title {
+    font-size: 1.5rem;
+    text-align: center;
+    margin-bottom: 1.5rem;
+  }
+  
+  .project-actions {
+    justify-content: center;
+  }
+}
+
+@media (max-width: 480px) {
+  .projects-section {
+    padding: 2rem 1rem;
+  }
+  
+  .swiper {
+    height: 300px;
+  }
+  
+  .swiper-button-next,
+  .swiper-button-prev {
+    width: 40px !important;
+    height: 40px !important;
+  }
+  
+  .swiper-button-next:after,
+  .swiper-button-prev:after {
+    font-size: 18px !important;
+  }
+  
+  .project-chat {
+    padding: 1.5rem 1rem;
+  }
+  
+  .project-title {
+    font-size: 1.3rem;
+  }
+  
+  .chat-box {
+    padding: 1.2rem;
+    font-size: 0.9rem;
+  }
+  
+  .project-btn {
+    padding: 8px 16px;
+    font-size: 0.85rem;
+  }
+}
+
+/* Animações adicionais */
+@keyframes fadeInUp {
+  from {
+    opacity: 0;
+    transform: translateY(30px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.project-container {
+  animation: fadeInUp 0.8s ease-out forwards;
+}
+
+/* Cores para o tema claro (simplificado e melhorado) */
+body.light-theme .projects-section {
+  background-color: var(--background-light);
+  color: var(--text-dark);
+}
+
+body.light-theme .swiper {
+  box-shadow: 
+    0 15px 35px rgba(0, 0, 0, 0.1),
+    0 0 0 1px rgba(0, 0, 0, 0.05);
+}
+
+body.light-theme .project-container {
+  background-color: white;
+  box-shadow: 
+    0 15px 35px rgba(0, 0, 0, 0.07),
+    0 0 0 1px rgba(0, 0, 0, 0.03);
+}
+
+body.light-theme .project-container:hover {
+  box-shadow: 
+    0 25px 50px rgba(0, 0, 0, 0.12),
+    0 0 0 1px rgba(0, 0, 0, 0.05);
+}
+
+body.light-theme .project-title {
+  color: var(--text-dark);
+}
+
+body.light-theme .project-chat {
+  background-color: #f8f9fa;
+}
+
+body.light-theme .chat-box {
+  background-color: #edeef2;
+  border: 1px solid var(--primary-color);
+  color: #333;
+  box-shadow: 0 5px 15px rgba(0, 0, 0, 0.05);
+}
+
+body.light-theme .project-container:hover .chat-box {
+  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.1);
+}
+
+body.light-theme .chat-box::before {
+  color: var(--primary-color);
+}
+
+body.light-theme .blinking-cursor {
+  background-color: var(--primary-color);
+}
+
+body.light-theme .project-code-btn {
+  color: var(--text-dark);
+  border: 1px solid var(--primary-color);
+}
+
+body.light-theme .project-code-btn:hover {
+  background-color: rgba(0, 123, 255, 0.05);
+}
+
+body.light-theme .swiper-button-next,
+body.light-theme .swiper-button-prev {
+  background-color: rgba(255, 255, 255, 0.7);
+  color: var(--primary-color);
+}
+
+body.light-theme .swiper-button-next:hover,
+body.light-theme .swiper-button-prev:hover {
+  background-color: rgba(255, 255, 255, 0.9);
+}
+
+body.light-theme .project-overlay {
+  background: linear-gradient(
+    135deg,
+    rgba(0, 0, 0, 0.5) 0%,
+    rgba(0, 0, 0, 0) 50%
+  );
+}
+
+body.light-theme .swiper-slide::before {
+  background: linear-gradient(
+    to top, 
+    rgba(0, 0, 0, 0.7) 10%, 
+    rgba(0, 0, 0, 0.5) 30%, 
+    rgba(0, 0, 0, 0.3) 50%,
+    rgba(0, 0, 0, 0) 100%
+  );
+}

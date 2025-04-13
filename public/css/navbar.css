@@ -1,0 +1,85 @@
+/* nav bar */
+nav {
+    background-color: var(--bg-color);
+    color: var(--text-color);
+    padding: 0.5em 1em; /* Aumenta ligeiramente o padding para dar mais espaço */
+    text-align: center;
+    transition: background-color 0.3s ease, color 0.3s ease;
+    border-bottom: 1px solid rgba(128, 128, 128, 0.1); /* Separador sutil */
+}
+
+nav ul {
+    list-style-type: none;
+    padding: 0;
+    margin: 0.5em 0; /* Espaçamento vertical consistente */
+}
+
+nav ul li {
+    background-color: rgba(255, 255, 255, 0);
+    display: inline-block; /* Melhor para controle de espaçamento */
+    margin: 0 15px; /* Espaçamento ligeiramente maior entre itens */
+    padding: 5px 0; /* Aumenta área de clique */
+}
+
+nav ul li a {
+    color: var(--text-color);
+    text-decoration: none;
+    position: relative;
+    font-size: 1.05em; /* Ligeiramente maior */
+    letter-spacing: 0.3px; /* Espaçamento entre letras para melhor legibilidade */
+    transition: color 0.2s ease; /* Transição suave na cor do texto */
+}
+
+nav ul li a:hover {
+    text-decoration: none;
+    opacity: 0.9; /* Leve mudança de opacidade ao passar o mouse */
+}
+
+nav ul li a::after {
+    content: '';
+    position: absolute;
+    width: 100%;
+    height: 2px;
+    bottom: -5px;
+    left: 0;
+    transform: scaleX(0);
+    transform-origin: bottom right;
+    transition: transform 0.3s ease-out;
+}
+
+/* Animação para o tema claro */
+body:not(.dark-theme) nav ul li a::after {
+    background-color: black;
+}
+
+body:not(.dark-theme) nav ul li a:hover::after {
+    transform: scaleX(1);
+    transform-origin: bottom left;
+}
+
+/* Animação para o tema escuro */
+body.dark-theme nav ul li a::after {
+    background-color: white;
+}
+
+body.dark-theme nav ul li a:hover::after {
+    transform: scaleX(1);
+    transform-origin: bottom left;
+}
+
+/* Estilo para item ativo do menu */
+nav ul li a.active::after {
+    transform: scaleX(1);
+    transform-origin: bottom left;
+}
+
+/* Responsividade para a navbar */
+@media (max-width: 600px) {
+    nav ul li {
+        margin: 0 8px;
+    }
+    
+    nav ul li a {
+        font-size: 0.95em;
+    }
+}
