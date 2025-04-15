@@ -542,3 +542,139 @@ body.light-theme .swiper-slide::before {
     rgba(0, 0, 0, 0) 100%
   );
 }
+
+/* Estilo para o modal de vídeo */
+.video-modal {
+  display: none;
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0, 0, 0, 0.85);
+  z-index: 1000;
+  align-items: center;
+  justify-content: center;
+  opacity: 0;
+  transition: opacity 0.4s ease;
+}
+
+.video-container {
+  position: relative;
+  width: 80%;
+  max-width: 900px;
+  margin: auto;
+  border-radius: 10px;
+  overflow: hidden;
+  box-shadow: 0 25px 50px rgba(0, 0, 0, 0.5);
+}
+
+.video-container video {
+  width: 100%;
+  display: block;
+  border-radius: 10px;
+}
+
+.close-video {
+  position: absolute;
+  top: 15px;
+  right: 15px;
+  width: 40px;
+  height: 40px;
+  background-color: rgba(0, 0, 0, 0.7);
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  z-index: 1001;
+}
+
+.close-video:hover {
+  background-color: rgba(255, 0, 0, 0.8);
+}
+
+.close-video::before,
+.close-video::after {
+  content: '';
+  position: absolute;
+  width: 20px;
+  height: 2px;
+  background-color: white;
+}
+
+.close-video::before {
+  transform: rotate(45deg);
+}
+
+.close-video::after {
+  transform: rotate(-45deg);
+}
+
+/* Estilo para o botão de disparo do vídeo */
+.video-trigger {
+  display: inline-block;
+  background-color: transparent;
+  color: var(--primary-color);
+  border: none;
+  font-family: 'National Park', monospace;
+  font-size: 1rem;
+  cursor: pointer;
+  padding: 0;
+  margin: 0 5px;
+  text-decoration: underline;
+  position: relative;
+  transition: all 0.3s ease;
+}
+
+.video-trigger:hover {
+  color: var(--accent-color);
+  transform: translateY(-2px);
+}
+
+.video-trigger:active {
+  transform: translateY(0);
+}
+
+/* Adicionar um pequeno ícone de play */
+.video-trigger::before {
+  content: "▶";
+  font-size: 0.8rem;
+  margin-right: 4px;
+  display: inline-block;
+  vertical-align: middle;
+}
+/* Estilos para controles personalizados de vídeo */
+.custom-video-controls {
+  position: absolute;
+  bottom: 20px;
+  left: 0;
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  opacity: 0;
+  transition: opacity 0.3s ease;
+}
+
+.video-container:hover .custom-video-controls {
+  opacity: 1;
+}
+
+.play-pause-btn {
+  background: rgba(0, 0, 0, 0.6);
+  color: white;
+  border: none;
+  border-radius: 50%;
+  width: 40px;
+  height: 40px;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: background 0.3s ease;
+}
+
+.play-pause-btn:hover {
+  background: rgba(0, 0, 0, 0.8);
+}
